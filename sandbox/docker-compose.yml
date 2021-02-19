@@ -1,0 +1,24 @@
+version: "3.7"
+
+services:
+  php:
+    image: "php:8.0.2-apache-buster"
+    volumes: 
+      - "./kode:/var/www/html"
+    working_dir: "/kode"
+    #entrypoint: "service apache2 start && tail -f /dev/stdout"
+    # ports: 
+    #   - "9554:80"
+
+  proxy:
+    image: "nginx:latest"
+    volumes:
+      - "./nginx:/etc/nginx/conf.d"
+    volumes_from: 
+      - php
+    depends_on: 
+      - php
+    ports:
+      - "9555:80"
+
+
