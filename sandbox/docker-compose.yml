@@ -2,7 +2,10 @@ version: "3.7"
 
 services:
   php:
-    image: "php:8.0.2-apache-buster"
+    #image: "php:8.0.2-apache-buster"    
+    build:       
+      dockerfile: "./docker/php-docker-with-composer"
+      context: .
     volumes: 
       - "./kode:/var/www/html"
     working_dir: "/kode"

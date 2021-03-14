@@ -1,6 +1,12 @@
-<?
+<?php
 
-include_once("./character.php");
+require_once("./character.php");
+require_once("./vendor/autoload.php");
+
+use Symfony\Component\Yaml\Yaml;
+
+$yaml = Yaml::parse("foo: bar");
+echo(var_dump($yaml)."<br />");
 
 $what = "world";
 echo("Hello ".$what);
