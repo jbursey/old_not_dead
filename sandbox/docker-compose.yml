@@ -13,6 +13,15 @@ services:
     # ports: 
     #   - "9554:80"
 
+
+  php2:    
+    build:       
+      dockerfile: "./docker/php-docker-with-composer"
+      context: .
+    volumes: 
+      - "./laravel_sample:/var/www/html"
+    working_dir: "/kode"
+
   proxy:
     image: "nginx:latest"
     volumes:
@@ -23,5 +32,6 @@ services:
       - php
     ports:
       - "9555:80"
+      - "9556:81"
 
 

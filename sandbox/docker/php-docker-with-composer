@@ -1,4 +1,4 @@
-FROM php:8.0.2-apache-buster AS base
+FROM php:7.2-apache-buster AS base
 
 SHELL ["/bin/bash", "-c"]
 
@@ -13,5 +13,12 @@ RUN php -r "unlink('composer-setup.php');"
 #RUN echo "alias composer=composer.phar" >> ~/.bashrc
 RUN mv /usr/local/bin/composer.phar /usr/local/bin/composer
 RUN composer global require laravel/installer
-RUN echo 'PATH=$PATH:$HOME/.config/composer/vendor/bin' | tee -a /etc/profile
-RUN export PATH=PATH=$PATH:$HOME/.config/composer/vendor/bin
+RUN echo 'PATH=$PATH:~/.composer/vendor/bin' | tee -a /etc/profile
+ENV PATH="~/.composer/vendor/bin:$PATH"
+
+RUN mkdir /kode
+RUN mkdir /kode/storage && mkdir /kode/storage/logs && mkdir /kode/storage/framework
+RUN mkdir /kode/storage/framework/cache && mkdir /kode/storage/framework/sessions && mkdir /kode/storage/framework/views
+RUN chmod 777 -R /kode/storage
+
+RUN a2enmod rewrite
