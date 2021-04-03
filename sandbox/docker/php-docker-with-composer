@@ -22,3 +22,4 @@ RUN mkdir /kode/storage/framework/cache && mkdir /kode/storage/framework/session
 RUN chmod 777 -R /kode/storage
 
 RUN a2enmod rewrite
+RUN docker-php-ext-install pdo_mysql && docker-php-ext-install pdo

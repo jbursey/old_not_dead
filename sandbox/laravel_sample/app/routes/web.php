@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,5 +19,8 @@ Route::get('/', function () {
 });
 
 Route::get("/users", function() {
-    return view("users");
+    $users = User::all();
+    //return $users;
+    return view("users")->with("zzz", $users);
+    //return view("users");
 });
