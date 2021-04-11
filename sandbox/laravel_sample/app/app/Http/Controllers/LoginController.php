@@ -22,7 +22,7 @@ class LoginController extends Controller
         {
             if(Hash::check($password, $foundUser->password))
             {                
-                Auth::login($foundUser);
+                Auth::login($foundUser);                     
                 //return view("secretview");
                 return redirect("/secretview");
             }

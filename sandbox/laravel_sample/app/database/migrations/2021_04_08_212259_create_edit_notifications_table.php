@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterUserRequestsAddWhatColumn extends Migration
+class CreateEditNotificationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class AlterUserRequestsAddWhatColumn extends Migration
      */
     public function up()
     {
-        //
-        Schema::table("user_requests", function(Blueprint $blueprint){
-            $blueprint->string("what_req", "500");
+        Schema::create('edit_notifications', function (Blueprint $table) {
+            $table->id();
+            $table->integer("notificatoin_status")->default(1);
+            $table->timestamps();
+            $table->engine = "MyISAM";
         });
     }
 
@@ -26,9 +28,6 @@ class AlterUserRequestsAddWhatColumn extends Migration
      */
     public function down()
     {
-        //
-        Schema::table("user_requests", function(Blueprint $blueprint) {
-            $blueprint->dropColumn("what_req");
-        });
+        Schema::dropIfExists('edit_notifications');
     }
 }

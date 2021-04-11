@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserRequestsTable extends Migration
+class CreateAddPriceTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateUserRequestsTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('user_requests');
-        Schema::create('user_requests', function (Blueprint $table) {
+        Schema::create('add_price', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("user_id")->nullable(false);
-            $table->foreign("user_id", "fk_user_id_users")->references("id")->on("users");
+            $table->string("price", 250);
             $table->timestamps();
+            $table->engine = "MyISAM";
         });
     }
 
@@ -29,6 +28,6 @@ class CreateUserRequestsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_requests');
+        Schema::dropIfExists('add_price');
     }
 }

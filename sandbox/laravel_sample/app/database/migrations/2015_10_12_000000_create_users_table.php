@@ -20,7 +20,15 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->string("user_role", 255);
+            $table->string("new_user_staff", 255);
+            $table->string("provider", 255);
+            $table->string("provider_id", 255);
+            $table->string("seller_agent", 255);
             $table->timestamps();
+            $table->engine = "InnoDB";
+            $table->charset = "utf8mb4";
+            $table->collation = "utf8mb4_unicode_ci";
         });
     }
 
