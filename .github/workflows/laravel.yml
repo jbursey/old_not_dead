@@ -11,32 +11,32 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: shivammathur/setup-php@b7d1d9c9a92d8d8463ce36d7f60da34d461724f8
-          with:
-            php-version: '7.2'
+        with:
+          php-version: '7.2'
       - uses: actions/checkout@v2
       - name: Show Dir Structure
-          run: ls -la    
+        run: ls -la    
       - name: Copy .env
-          working-directory: ./application/sandbox/marvel_app/marvel_app_kode
-          run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+        working-directory: ./application/sandbox/marvel_app/marvel_app_kode
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
       - name: Install Dependencies
-          working-directory: ./application/sandbox/marvel_app/marvel_app_kode
-          run: ls -la  && composer install -q --no-ansi --no-interaction --no-scripts
+        working-directory: ./application/sandbox/marvel_app/marvel_app_kode
+        run: ls -la  && composer install -q --no-ansi --no-interaction --no-scripts
       - name: Generate key
-          working-directory: ./application/sandbox/marvel_app/marvel_app_kode
-          run: php artisan key:generate
+        working-directory: ./application/sandbox/marvel_app/marvel_app_kode
+        run: php artisan key:generate
       - name: Directory Permissions
-          working-directory: ./application/sandbox/marvel_app/marvel_app_kode
-          run: chmod -R 777 storage bootstrap/cache
+        working-directory: ./application/sandbox/marvel_app/marvel_app_kode
+        run: chmod -R 777 storage bootstrap/cache
       - name: Create Database
-          working-directory: ./application/sandbox/marvel_app/marvel_app_kode
-          run: |
-            mkdir -p database
-            touch database/database.sqlite
+        working-directory: ./application/sandbox/marvel_app/marvel_app_kode
+        run: |
+          mkdir -p database
+          touch database/database.sqlite
       - name: Execute tests (Unit and Feature tests) via PHPUnit
-          working-directory: ./application/sandbox/marvel_app/marvel_app_kode
-          env:
-            DB_CONNECTION: sqlite
-            DB_DATABASE: database/database.sqlite
-            HOSTNAME: TestFooBar
-          run: vendor/bin/phpunit --testdox
+        working-directory: ./application/sandbox/marvel_app/marvel_app_kode
+        env:
+          DB_CONNECTION: sqlite
+          DB_DATABASE: database/database.sqlite
+          HOSTNAME: TestFooBar
+        run: vendor/bin/phpunit --testdox
