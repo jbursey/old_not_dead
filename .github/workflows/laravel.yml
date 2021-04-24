@@ -18,6 +18,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: Show Dir Structure
       run: ls -la
+    - name: Navigate to App Directory
+      run: cd ./application/sandbox/marvel_app_marvel_app_kode/
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: Install Dependencies
