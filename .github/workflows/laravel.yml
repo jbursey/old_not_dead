@@ -57,15 +57,15 @@ jobs:
       - uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:          
           # ftp server
-          server: theqwikfix.com
+          server: qat.app.theqwikfix.com
           # ftp username
-          username: git_jeff_ftp_qat@qat.app.theqwikfix.com
+          username: qat_test@qat.app.theqwikfix.com
           # ftp password
-          password: sNhkX5vLP9QYMwWX
+          password: 8e6FDbKuDx7LmTQb
           # Server port to connect to (read your web hosts docs)
           port: 21 # optional
           # protocol to deploy with - ftp, ftps, or ftps-legacy
-          protocol: ftps # optional
+          protocol: ftp # optional
           # Folder to upload from, must end with trailing slash /
           local-dir: ./application/sandbox/marvel_app/marvel_app_kode/test_ftp/ # optional
           # Path to upload to on the server. Must end with trailing slash /
