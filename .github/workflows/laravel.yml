@@ -23,7 +23,7 @@ jobs:
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: Install Dependencies
       working-directory: ./application/sandbox/marvel_app/marvel_app_kode
-      run: ls -la  && composer install -q --no-ansi --no-interaction
+      run: ls -la  && composer install -q --no-ansi --no-interaction --no-scripts
     - name: Generate key
       working-directory: ./application/sandbox/marvel_app/marvel_app_kode
       run: php artisan key:generate
