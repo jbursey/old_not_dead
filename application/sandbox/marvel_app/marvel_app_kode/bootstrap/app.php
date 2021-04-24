@@ -16,7 +16,7 @@ $app = new Illuminate\Foundation\Application(
 );
 
 
-if($_ENV("HOSTNAME") == "Darth-Desktop") {
+if($_ENV["HOSTNAME"] == "Darth-Desktop") {
     $app->useStoragePath("/kode/storage");
 }
 /*
