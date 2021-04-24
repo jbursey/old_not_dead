@@ -8,10 +8,7 @@ on:
 
 jobs:
   laravel-tests:
-    env:
-      HOSTNAME: TestFooBar
     runs-on: ubuntu-latest
-
     steps:
     - uses: shivammathur/setup-php@b7d1d9c9a92d8d8463ce36d7f60da34d461724f8
       with:
@@ -41,4 +38,5 @@ jobs:
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
+        HOSTNAME: TestFooBar
       run: vendor/bin/phpunit --testdox
