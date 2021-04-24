@@ -57,7 +57,7 @@ jobs:
       - uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:          
           # ftp server
-          server: ftp.theqwikfix.com
+          server: qat.app.theqwikfix.com
           # ftp username
           username: git_jeff_ftp_qat@qat.app.theqwikfix.com
           # ftp password
