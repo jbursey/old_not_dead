@@ -19,7 +19,7 @@ echo "___ZZZ___";
 echo(var_dump($_ENV));
 echo "___XXX___";
 
-if($_ENV["HOSTNAME"] == "Darth-Desktop") {
+if(isset($_ENV["HOSTNAME"]) && $_ENV["HOSTNAME"] == "Darth-Desktop") {
     $app->useStoragePath("/kode/storage");
 }
 /*
