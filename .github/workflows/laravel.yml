@@ -44,3 +44,42 @@ jobs:
           DB_DATABASE: database/database.sqlite
           HOSTNAME: TestFooBar
         run: vendor/bin/phpunit --testdox
+  deploy-qat:
+    needs: [laravel-tests]
+    runs-on: ubuntu-latest
+    env:
+      TESTZEBRA: ablkj
+    steps:
+      - uses: shivammathur/setup-php@b7d1d9c9a92d8d8463ce36d7f60da34d461724f8
+        with:
+          php-version: '7.2'
+      - uses: actions/checkout@v2
+      - uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        working-directory: ./application/sandbox/marvel_app/marvel_app_kode
+        with:
+          # ftp server
+          server: ftp.theqwikfix.com
+          # ftp username
+          username: git_jeff_ftp_qat@qat.app.theqwikfix.com
+          # ftp password
+          password: sNhkX5vLP9QYMwWX
+          # Server port to connect to (read your web hosts docs)
+          port: 21 # optional
+          # protocol to deploy with - ftp, ftps, or ftps-legacy
+          protocol: ftps # optional
+          # Folder to upload from, must end with trailing slash /
+          local-dir: ./test_ftp/ # optional
+          # Path to upload to on the server. Must end with trailing slash /
+          server-dir: # optional
+          # Path and name of the state file - this file is used to track which files have been deployed
+          state-name: # optional
+          # Prints which modifications will be made with current config options, but doesnt actually make any changes
+          dry-run: true # optional
+          # Deletes ALL contents of server-dir, even items in excluded with exclude argument
+          dangerous-clean-slate: false # optional
+          # An array of glob patterns, these files will not be included in the publish/delete process
+          exclude: # optional
+          # How verbose should the information be - warn, info, debug
+          log-level: # optional
+          # strict or loose
+          security: # optional
