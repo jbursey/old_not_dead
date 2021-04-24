@@ -35,6 +35,8 @@ jobs:
         run: |
           mkdir -p database
           touch database/database.sqlite
+      - name: Show Environment
+        run: env
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         working-directory: ./application/sandbox/marvel_app/marvel_app_kode
         env:
