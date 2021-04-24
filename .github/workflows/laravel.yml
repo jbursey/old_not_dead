@@ -22,6 +22,8 @@ jobs:
       run: cd ./application/sandbox/marvel_app/marvel_app_kode/
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+    - name: Composer Help
+      run: composer --help
     - name: Install Dependencies
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
     - name: Generate key
