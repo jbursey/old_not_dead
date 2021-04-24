@@ -1,24 +1,12 @@
 version: "3.7"
 
 services:
-  php:
-    #image: "php:8.0.2-apache-buster"    
+  php:    
     build:       
-      dockerfile: "./docker/php-docker-with-composer"
+      dockerfile: "./application/sandbox/docker/php-docker-with-composer"
       context: .
     volumes: 
-      - "./kode:/var/www/html"
-    working_dir: "/kode"
-    #entrypoint: "service apache2 start && tail -f /dev/stdout"
-    # ports: 
-    #   - "9554:80"
-
-  php2:    
-    build:       
-      dockerfile: "./docker/php-docker-with-composer"
-      context: .
-    volumes: 
-      - "./laravel_sample:/var/www/html"
+      - "./application/sandbox/marvel_app/marvel_app_kode:/var/www/html"
       - "./apache:/etc/apache2/sites-available"
     working_dir: "/kode"
 
@@ -28,24 +16,23 @@ services:
       - MYSQL_ROOT_PASSWORD=supersecret
       - MYSQL_USER=sa
       - MYSQL_PASSWORD=secret
-      - MYSQL_DATABASE=qwikfix_local
+      - MYSQL_DATABASE=jeff_local
 
   adminer:
     image: adminer
     restart: always
     ports:
       - 8080:8080
+    environment: 
+      - ADMINER_DESIGN=dracula
 
   proxy:
     image: "nginx:latest"
     volumes:
-      - "./nginx:/etc/nginx/conf.d"
-    # volumes_from: 
-    #   - php
+      - "./nginx:/etc/nginx/conf.d"    
     depends_on: 
       - php
     ports:
-      - "9555:80"
-      - "9556:81"
+      - "9555:80"      
 
 
