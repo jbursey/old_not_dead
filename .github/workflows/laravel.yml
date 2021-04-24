@@ -47,16 +47,15 @@ jobs:
   deploy-qat:
     needs: [laravel-tests]
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./application/sandbox/marvel_app/marvel_app_kode
     env:
       TESTZEBRA: ablkj
     steps:
-      - uses: shivammathur/setup-php@b7d1d9c9a92d8d8463ce36d7f60da34d461724f8
-        with:
-          php-version: '7.2'
       - uses: actions/checkout@v2
       - uses: SamKirkland/FTP-Deploy-Action@4.0.0
-        working-directory: ./application/sandbox/marvel_app/marvel_app_kode
-        with:
+        with:          
           # ftp server
           server: ftp.theqwikfix.com
           # ftp username
